@@ -1,5 +1,5 @@
 import IPython
-import Plotly
+import plotly
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
