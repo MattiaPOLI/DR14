@@ -22,7 +22,7 @@ def variance_pca(df, graph):
   dfStandard = StandardScaler().fit_transform(df)
   PCA = PCA()
   data_PCA = PCA.fit_transform(dfStandard)
-  if graph = True: 
+  if graph == True: 
     cum_sum = PCA.explained_variance_ratio_.cumsum()
     cum_sum = cum_sum * 100
     bars = [go.Bar(y = cum_sum)]
