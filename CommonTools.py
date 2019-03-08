@@ -1,5 +1,6 @@
 import IPython
 import plotly
+import plotly.graph_objs as go
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
