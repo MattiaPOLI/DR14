@@ -34,7 +34,7 @@ def variance_pca(df, graph):
   return data_PCA
 
 #function to plot the confusion matrix
-def confusion_matrix(true, predicted):
+def confusion_matrix_(true, predicted):
   confuMatrix = confusion_matrix(true, predicted)
   for j in range(3):
     confuMatrix[0][j], confuMatrix[2][j] = confuMatrix[2][j], confuMatrix[0][j]
