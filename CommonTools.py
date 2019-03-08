@@ -20,15 +20,12 @@ def enable_plotly_in_cell():
 #each component is carrying. It returns the dataset projected in the new space.
 def variance_pca(df, graph):
   dfStandard = StandardScaler().fit_transform(df)
-  PCA = PCA()
-  data_PCA = PCA.fit_transform(dfStandard)
+  pca = PCA()
+  data_PCA = pca.fit_transform(dfStandard)
   if graph == True: 
-    cum_sum = PCA.explained_variance_ratio_.cumsum()
+    cum_sum = pca.explained_variance_ratio_.cumsum()
     cum_sum = cum_sum * 100
     bars = [go.Bar(y = cum_sum)]
     enable_plotly_in_cell()
     plotly.offline.iplot(bars, filename="cumVariance")
   return data_PCA
-
-def summatory(a, b):
-  return a+b
