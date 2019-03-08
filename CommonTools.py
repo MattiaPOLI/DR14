@@ -30,3 +30,17 @@ def variance_pca(df, graph):
     enable_plotly_in_cell()
     plotly.offline.iplot(bars, filename="cumVariance")
   return data_PCA
+
+#function to plot the confusion matrix
+def confusion_matrix(scores):
+  cmColorScale = [[0.0, "rgb(255, 255, 255)"], [1.0, "rgb(0, 0, 255)"]]
+  z = scores
+  x = ["Galaxy", "QSO", "Star"]
+  y = ["Star", "QSO", "Galaxy"]
+  figure = ff.create_annotated_heatmap(z, x = x, y = y, colorscale= cmColorScale, showscale = True)
+  figure['layout']['xaxis']['title']['text'] = "Predicted Label"
+  figure['layout']['xaxis']['side'] = "bottom"
+  figure['layout']['yaxis']['title']['text'] = "True Label"
+  figure['layout']['title'] = "Normalized Confusion Matrix - OOB Score"
+  enable_plotly_in_cell()
+  plotly.offline.iplot(figure, filename="ConfusionMatrix")
