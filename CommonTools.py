@@ -29,3 +29,6 @@ def variance_pca(df, graph):
     enable_plotly_in_cell()
     plotly.offline.iplot(bars, filename="cumVariance")
   return data_PCA
+
+def sum(a, b):
+  return a+b
