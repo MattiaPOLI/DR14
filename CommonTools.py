@@ -16,13 +16,16 @@ def enable_plotly_in_cell():
   display(IPython.core.display.HTML('''<script src="/static/components/requirejs/require.js"></script>'''))
   plotly.offline.init_notebook_mode(connected=True)
 
-#show a bar graph explaining the variance associated to each component
-def variance_pca():
+#function that takes as input data required to perform PCA. If graph is True then it show also the bar-graph explaining how much variance
+#each component is carrying. It returns the dataset projected in the new space.
+def variance_pca(df, graph):
   dfStandard = StandardScaler().fit_transform(df)
   PCA = PCA()
   data_PCA = PCA.fit_transform(dfStandard)
-  cum_sum = PCA.explained_variance_ratio_.cumsum()
-  cum_sum = cum_sum * 100
-  bars = [go.Bar(y = cum_sum)]
-  enable_plotly_in_cell()
-  plotly.offline.iplot(bars, filename="cumVariance")
+  if graph = True: 
+    cum_sum = PCA.explained_variance_ratio_.cumsum()
+    cum_sum = cum_sum * 100
+    bars = [go.Bar(y = cum_sum)]
+    enable_plotly_in_cell()
+    plotly.offline.iplot(bars, filename="cumVariance")
+  return data_PCA
