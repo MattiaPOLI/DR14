@@ -3,6 +3,8 @@ import numpy as np
 import plotly
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
+from imblearn.over_sampling import SVMSMOTE
+from collections import Counter
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -51,3 +53,11 @@ def confusion_matrix_(true, predicted):
   figure['layout']['title'] = "Normalized Confusion Matrix - OOB Score"
   enable_plotly_in_cell()
   plotly.offline.iplot(figure, filename="ConfusionMatrix")
+  
+  
+#function to balance the dataset, standard strategy is all. In this case a SVM SMOTE approach is used because the SVM classifier is
+#returning the best result.
+def balance_dataset(df, strategy = "all"):
+  sm = SVMSMOTE(random_state = 42, sampling_strategy = strategy)
+  trainOver, labelOver = sm.fit_sample(trainSet, labelTrainSet)
+  return trainOver, labelOver
