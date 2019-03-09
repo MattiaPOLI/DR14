@@ -57,7 +57,7 @@ def confusion_matrix_(true, predicted):
   
 #function to balance the dataset, standard strategy is all. In this case a SVM SMOTE approach is used because the SVM classifier is
 #returning the best result.
-def balance_dataset(df, strategy = "all"):
+def balance_dataset(df, dfLabel, strategy = "all"):
   sm = SVMSMOTE(random_state = 42, sampling_strategy = strategy)
-  trainOver, labelOver = sm.fit_sample(trainSet, labelTrainSet)
+  trainOver, labelOver = sm.fit_sample(df, dfLabel)
   return trainOver, labelOver
