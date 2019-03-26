@@ -39,13 +39,11 @@ def variance_pca(df, graph):
 #function to plot the confusion matrix
 def confusion_matrix_(true, predicted):
   confuMatrix = confusion_matrix(true, predicted)
-  print(confuMatrix)
   for j in range(3):
     confuMatrix[0][j], confuMatrix[2][j] = confuMatrix[2][j], confuMatrix[0][j]
     confuMatrix = np.ndarray.round(confuMatrix.astype(float) / confuMatrix.sum(axis = 1)[:, np.newaxis], 3)
   cmColorScale = [[0.0, "rgb(255, 255, 255)"], [1.0, "rgb(0, 0, 255)"]]
   z = confuMatrix
-  print(z)
   x = ["Galaxy", "QSO", "Star"]
   y = ["Star", "QSO", "Galaxy"]
   figure = ff.create_annotated_heatmap(z, x = x, y = y, colorscale= cmColorScale, showscale = True)
