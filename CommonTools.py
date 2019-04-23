@@ -2,6 +2,8 @@ import IPython
 import numpy as np
 import pandas as pd
 import plotly
+import io
+import requests
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
 from imblearn.over_sampling import SVMSMOTE
@@ -10,7 +12,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-url = "https://github.com/MattiaPOLI/DR14/blob/master/Sky.csv"
+url = "https://raw.githubusercontent.com/MattiaPOLI/DR14/master/Sky.csv"
+path = requests.get(url).content
 
 #colorscale used for scatterplot
 pl_colorscale = [[0.0, '#08085e'],
@@ -22,7 +25,7 @@ pl_colorscale = [[0.0, '#08085e'],
 
 #set of functions to return a specific filtered datateset
 def get_raw_dataset():
-  df = pd.read(url)
+  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   df = StandardScaler().fit_transform(df)
   y = df["class"]
   X = df.drop(columns = ["class"])
