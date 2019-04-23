@@ -32,7 +32,7 @@ def get_most_relevant_dataset():
   df = StandardScaler().fit_transform(df)
   df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid", "class"])
   y = df["class"]
-  X = df.drop(columns = ["class"]
+  X = df.drop(columns = ["class"])
   return X, y
               
 def get_meaningful_dataset():
@@ -40,14 +40,14 @@ def get_meaningful_dataset():
   df = StandardScaler().fit_transform(df)
   df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid", "class", "specobjid", "plate", "mjd"])
   y = df["class"]
-  X = df.drop(columns = ["class"]
+  X = df.drop(columns = ["class"])
   return X, y
   
 def get_pca_dataset():
   df = pd.read(url)
   df = variance_pca(df, False)
   y = df["class"]
-  X = df.drop(columns = ["class"]
+  X = df.drop(columns = ["class"])
   return X, y
   
 #function used to view the plot in google colab too; must be used before iplot
