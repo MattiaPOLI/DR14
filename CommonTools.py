@@ -32,26 +32,27 @@ def get_raw_dataset():
   return X, y
 
 def get_most_relevant_dataset():
-  df = pd.read(url)
-  df = StandardScaler().fit_transform(df)
+  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid", "class"])
   y = df["class"]
   X = df.drop(columns = ["class"])
+  X = StandardScaler().fit_transform(X)
   return X, y
               
 def get_meaningful_dataset():
-  df = pd.read(url)
-  df = StandardScaler().fit_transform(df)
+  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid", "class", "specobjid", "plate", "mjd"])
   y = df["class"]
   X = df.drop(columns = ["class"])
+  X = StandardScaler().fit_transform(X)
   return X, y
   
 def get_pca_dataset():
-  df = pd.read(url)
-  df = variance_pca(df, False)
+  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   y = df["class"]
   X = df.drop(columns = ["class"])
+  X = variance_pca(X, False)
+  X = X[:, 0:5]
   return X, y
   
 #function used to view the plot in google colab too; must be used before iplot
