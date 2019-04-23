@@ -9,6 +9,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
+url = "https://github.com/MattiaPOLI/DR14/blob/master/Sky.csv"
+
 #colorscale used for scatterplot
 pl_colorscale = [[0.0, '#08085e'],
                 [0.333, '#08085e'],
@@ -19,6 +21,11 @@ pl_colorscale = [[0.0, '#08085e'],
 
 #set of functions to return a specific filtered datateset
 def get_raw_dataset():
+  df = pd.read(url)
+  return df
+
+def get_most_relevant_dataset():
+  df = pd.read(url)
   
 
 #function used to view the plot in google colab too; must be used before iplot
