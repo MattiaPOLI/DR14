@@ -26,9 +26,9 @@ pl_colorscale = [[0.0, '#08085e'],
 #set of functions to return a specific filtered datateset
 def get_raw_dataset():
   df = pd.read_csv(io.StringIO(path.decode('utf-8')))
-  df = StandardScaler().fit_transform(df)
   y = df["class"]
   X = df.drop(columns = ["class"])
+  X = StandardScaler().fit_transform(X)
   return X, y
 
 def get_most_relevant_dataset():
