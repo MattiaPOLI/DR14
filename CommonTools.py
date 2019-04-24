@@ -33,17 +33,15 @@ def get_raw_dataset():
 
 def get_most_relevant_dataset():
   df = pd.read_csv(io.StringIO(path.decode('utf-8')))
-  df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid"])
+  X = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "class", "fiberid"])
   y = df["class"]
-  X = df.drop(columns = ["class"])
   X = StandardScaler().fit_transform(X)
   return X, y
               
 def get_meaningful_dataset():
   df = pd.read_csv(io.StringIO(path.decode('utf-8')))
-  df = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "fiberid", "specobjid", "plate", "mjd"])
+  X = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "class", "fiberid", "specobjid", "plate", "mjd"])
   y = df["class"]
-  X = df.drop(columns = ["class"])
   X = StandardScaler().fit_transform(X)
   return X, y
   
