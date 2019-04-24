@@ -15,13 +15,13 @@ from sklearn.decomposition import PCA
 url = "https://raw.githubusercontent.com/MattiaPOLI/DR14/master/Sky.csv"
 path = requests.get(url).content
 df = pd.read_csv(io.StringIO(path.decode('utf-8')))
-df["run"].astype(np.float64)
-df["rerun"].astype(np.float64)
-df["camcol"].astype(np.float64)
-df["field"].astype(np.float64)
-df["plate"].astype(np.float64)
-df["mjd"].astype(np.float64)
-df["fiberid"].astype(np.float64)
+df["run"] = df["run"].astype(np.float64)
+df["rerun"] = df["rerun"].astype(np.float64)
+df["camcol"] = df["camcol"].astype(np.float64)
+df["field"] = df["field"].astype(np.float64)
+df["plate"] = df["plate"].astype(np.float64)
+df["mjd"] = df["mjd"].astype(np.float64)
+df["fiberid"] = df["fiberid"].astype(np.float64)
 
 #colorscale used for scatterplot
 pl_colorscale = [[0.0, '#08085e'],
