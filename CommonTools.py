@@ -14,6 +14,14 @@ from sklearn.decomposition import PCA
 
 url = "https://raw.githubusercontent.com/MattiaPOLI/DR14/master/Sky.csv"
 path = requests.get(url).content
+df = pd.read_csv(io.StringIO(path.decode('utf-8')))
+df["run"].astype(np.float64)
+df["rerun"].astype(np.float64)
+df["camcol"].astype(np.float64)
+df["field"].astype(np.float64)
+df["plate"].astype(np.float64)
+df["mjd"].astype(np.float64)
+df["fiberid"].astype(np.float64)
 
 #colorscale used for scatterplot
 pl_colorscale = [[0.0, '#08085e'],
@@ -25,28 +33,24 @@ pl_colorscale = [[0.0, '#08085e'],
 
 #set of functions to return a specific filtered datateset
 def get_raw_dataset():
-  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   y = df["class"]
   X = df.drop(columns = ["class"])
   X = StandardScaler().fit_transform(X)
   return X, y
 
 def get_most_relevant_dataset():
-  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   X = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "class", "fiberid"])
   y = df["class"]
   X = StandardScaler().fit_transform(X)
   return X, y
               
 def get_meaningful_dataset():
-  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   X = df.drop(columns = ["objid", "ra", "dec", "run", "rerun", "camcol", "field", "class", "fiberid", "specobjid", "plate", "mjd"])
   y = df["class"]
   X = StandardScaler().fit_transform(X)
   return X, y
   
 def get_pca_dataset():
-  df = pd.read_csv(io.StringIO(path.decode('utf-8')))
   y = df["class"]
   X = df.drop(columns = ["class"])
   X = variance_pca(X, False)
