@@ -35,9 +35,10 @@ pl_colorscale = [[0.0, '#08085e'],
 # colors for learning curve
 colors = plotly.colors.DEFAULT_PLOTLY_COLORS
 
+
 # transparent colors
 def get_color_with_opacity(color, opacity):
-    return "rgba(" + color[4:-1] + ", %.2f)" % opacity
+	return "rgba(" + color[4:-1] + ", %.2f)" % opacity
 
 
 # set of functions to return a specific filtered datateset
@@ -94,7 +95,7 @@ def variance_pca(df, graph):
 
 
 # function to plot the confusion matrix
-def confusion_matrix_(true, predicted):
+def confusion_matrix_(true, predicted, title="Normalized Confusion Matrix"):
 	confuMatrix = confusion_matrix(true, predicted)
 	for j in range(3):
 		confuMatrix[0][j], confuMatrix[2][j] = confuMatrix[2][j], confuMatrix[0][j]
@@ -107,7 +108,7 @@ def confusion_matrix_(true, predicted):
 	figure['layout']['xaxis']['title']['text'] = "Predicted Label"
 	figure['layout']['xaxis']['side'] = "bottom"
 	figure['layout']['yaxis']['title']['text'] = "True Label"
-	figure['layout']['title'] = "Normalized Confusion Matrix"
+	figure['layout']['title'] = title
 	enable_plotly_in_cell()
 	plotly.offline.iplot(figure, filename="ConfusionMatrix")
 
@@ -121,26 +122,21 @@ def balance_dataset(df, dfLabel, strategy="all"):
 
 
 # function to plot the learning curve of a classifier,with respect to the training set size
-def plot_learning_curve(estimator, title, X, y, cv=None, n_jobs=-1, train_sizes=np.linspace(.1, 1.0, 5)):
+def learning_curve_(estimator, X, y, cv=5, title="Learning Curve", n_jobs=-1, train_sizes=np.linspace(.1, 1.0, 5)):
 	"""
 	Generate a simple plot of the test and training learning curve.
-
 	Parameters
 	----------
 	estimator : object type that implements the "fit" and "predict" methods
 		An object of that type which is cloned for each validation.
-
 	title : string
 		Title for the chart.
-
 	X : array-like, shape (n_samples, n_features)
 		Training vector, where n_samples is the number of samples and
 		n_features is the number of features.
-
 	y : array-like, shape (n_samples) or (n_samples, n_features), optional
 		Target relative to X for classification or regression;
 		None for unsupervised learning.
-
 	cv : int, cross-validation generator or an iterable, optional
 		Determines the cross-validation splitting strategy.
 		Possible inputs for cv are:
@@ -148,20 +144,16 @@ def plot_learning_curve(estimator, title, X, y, cv=None, n_jobs=-1, train_sizes=
 		  - integer, to specify the number of folds.
 		  - :term:`CV splitter`,
 		  - An iterable yielding (train, test) splits as arrays of indices.
-
 		For integer/None inputs, if ``y`` is binary or multiclass,
 		:class:`StratifiedKFold` used. If the estimator is not a classifier
 		or if ``y`` is neither binary nor multiclass, :class:`KFold` is used.
-
 		Refer :ref:`User Guide <cross_validation>` for the various
 		cross-validators that can be used here.
-
 	n_jobs : int or None, optional (default=None)
 		Number of jobs to run in parallel.
 		``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
 		``-1`` means using all processors. See :term:`Glossary <n_jobs>`
 		for more details.
-
 	train_sizes : array-like, shape (n_ticks,), dtype float or int
 		Relative or absolute numbers of training examples that will be used to
 		generate the learning curve. If the dtype is float, it is regarded as a
@@ -288,6 +280,7 @@ def grid_search(estimator, parameters, X_train, y_train, cv=5):
 	
 	# return the best alternative
 	return gridsearch_obj.best_estimator_
+
 
 # function to return the 'accuracy' model evaluation index
 def accuracy(estimator, X_test, y_test):
