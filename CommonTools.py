@@ -88,7 +88,7 @@ def variance_pca(df, graph):
 	if graph == True:
 		cum_sum = pca.explained_variance_ratio_.cumsum()
 		cum_sum = cum_sum * 100
-		bars = [go.Bar(y=cum_sum, xaxis="components", yaxis="cumulative variance")]
+		bars = [go.Bar(y=cum_sum)]
 		enable_plotly_in_cell()
 		plotly.offline.iplot(bars, filename="cumVariance")
 	return data_PCA
