@@ -6,6 +6,8 @@ import io
 import requests
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
+import matplotlib.pyplot as py
+from matplotlib.pyplot import figure
 from plotly.plotly import plot, iplot
 from imblearn.over_sampling import SVMSMOTE
 from collections import Counter
@@ -88,9 +90,12 @@ def variance_pca(df, graph):
 	if graph == True:
 		cum_sum = pca.explained_variance_ratio_.cumsum()
 		cum_sum = cum_sum * 100
-		bars = [go.Bar(y=cum_sum)]
+		r1 = mp.arange(len(df))
+		py.bar(r1, df)
+		py.xlabel("principal component")
+		py.ylabel("cumulative variance")
 		enable_plotly_in_cell()
-		plotly.offline.iplot(bars, filename="cumVariance")
+		py.show()
 	return data_PCA
 
 
