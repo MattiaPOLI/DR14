@@ -90,8 +90,8 @@ def variance_pca(df, graph):
 	if graph == True:
 		cum_sum = pca.explained_variance_ratio_.cumsum()
 		cum_sum = cum_sum * 100
-		r1 = np.arange(len(df))
-		py.bar(r1, df)
+		r1 = np.arange(len(cum_sum))
+		py.bar(r1, cum_sum)
 		py.xlabel("principal component")
 		py.ylabel("cumulative variance")
 		enable_plotly_in_cell()
