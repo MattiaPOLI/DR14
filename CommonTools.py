@@ -28,12 +28,12 @@ df["mjd"] = df["mjd"].astype(np.float64)
 df["fiberid"] = df["fiberid"].astype(np.float64)
 
 # colorscale used for scatterplot
-pl_colorscale = [[0.0, '#08085e'],
-                 [0.333, '#08085e'],
-                 [0.333, '#4ef037'],
-                 [0.666, '#4ef037'],
-                 [0.666, '#24bddf'],
-                 [1, '#24bddf']]
+pl_colorscale = [[0.0, '#FF4500'],
+                 [0.333, '#FF4500'],
+                 [0.333, '#1932D4'],
+                 [0.666, '#1932D4'],
+                 [0.666, '#008000'],
+                 [1, '#008000']]
 # colors for learning curve
 colors = plotly.colors.DEFAULT_PLOTLY_COLORS
 
