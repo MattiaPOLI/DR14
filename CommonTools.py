@@ -94,6 +94,7 @@ def variance_pca(df, graph):
 		py.bar(r1, cum_sum)
 		py.xlabel("principal component")
 		py.ylabel("cumulative variance")
+		py.xticks([r for r in range(len(cum_sum))])
 		enable_plotly_in_cell()
 		py.show()
 	return data_PCA
