@@ -8,7 +8,7 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import matplotlib.pyplot as py
 from matplotlib.pyplot import figure
-from plotly.plotly import plot, iplot
+from chart_studio.plotly import plot, iplot
 from imblearn.over_sampling import SVMSMOTE
 from collections import Counter
 from sklearn.metrics import confusion_matrix, accuracy_score
